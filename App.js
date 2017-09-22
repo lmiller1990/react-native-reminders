@@ -7,7 +7,7 @@ export default class App extends React.Component {
 	_handleNavRequest() {
 		this.refs.nav.push({
 			component: AddReminderItem,
-			title: 'Add a new reminder'
+			title: 'New reminder'
 		})
 	}
 
@@ -26,9 +26,3 @@ export default class App extends React.Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-		paddingTop: 20
-  },
-});
