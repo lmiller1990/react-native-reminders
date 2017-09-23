@@ -3,8 +3,8 @@ import { View, Text } from 'react-native'
 import styles from './shared/Styles'
 
 class AddReminderItem extends Component {
-	constructor(props) {
-		super(props)
+	static navigationOptions = {
+		title: 'Add Reminder'
 	}
 
 	render() {

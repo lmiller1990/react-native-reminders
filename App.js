@@ -1,28 +1,10 @@
 import React from 'react';
-import { View, NavigatorIOS, StyleSheet } from 'react-native';
-import ViewReminders from './components/ViewReminders'
-import AddReminderItem from './components/AddReminderItem'
+import { View, StyleSheet } from 'react-native';
+import { StackNavigator } from 'react-navigation'
+import ListRemindersScreen from './screens/ListRemindersScreen'
+import AddReminderScreen from './screens/AddReminderScreen'
 
-export default class App extends React.Component {
-	_handleNavRequest() {
-		this.refs.nav.push({
-			component: AddReminderItem,
-			title: 'New reminder'
-		})
-	}
-
-  render() {
-    return (
-			<NavigatorIOS
-				ref='nav'
-				initialRoute={{
-					component: ViewReminders,
-					title: 'Reminders',
-					rightButtonTitle: 'New',
-					onRightButtonPress: () => this._handleNavRequest()
-				}}
-				style={{flex: 1}}
-			/>
-    );
-  }
-}
+export default StackNavigator({
+	Home: { screen: ListRemindersScreen },
+	AddReminder: { screen: AddReminderScreen }
+})
