@@ -26,20 +26,15 @@ class LocalStorage {
 		}
 	}
 
-	async addReminder(reminder) {
+	async addReminder({ name, date }) {
 		try {
 			let reminders = await this.load(this.REMINDER_KEY)
 
-			let _key = reminders.length > 0 
+			let key = reminders.length > 0 
 			? Math.max(...reminders.map(x => x.key)) + 1
 			: 0
-			console.log(_key)
 
-			this.save(this.REMINDER_KEY, reminders.concat({
-				key: _key,
-				name: reminder, 
-				date: new Date() 
-			}))
+			this.save(this.REMINDER_KEY, reminders.concat({ key, name, date }))
 		} catch (error) {
 			console.log('Error adding reminder', error)
 		}

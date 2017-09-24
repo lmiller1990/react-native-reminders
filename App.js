@@ -10,9 +10,10 @@ export default class App extends React.Component {
 		super(props)
 		this.localStorage = new localStorage()
 
-		this.state = { text: '', reminders: [] }
+		this.state = { text: '', date: new Date(), reminders: [] }
 
 		this.handleInput = this.handleInput.bind(this)
+		this.setDate = this.setDate.bind(this)
 		this.addReminder = this.addReminder.bind(this)
 		this.loadReminders = this.loadReminders.bind(this)
 		this.removeReminder = this.removeReminder.bind(this)
@@ -28,7 +29,10 @@ export default class App extends React.Component {
 	}
 
 	async addReminder() {
-		await this.localStorage.addReminder(this.state.text)
+		await this.localStorage.addReminder({
+			name: this.state.text,
+			date: this.state.date
+		})
 		this.loadReminders()
 		this.setState({text: ''})
 	}
@@ -42,6 +46,10 @@ export default class App extends React.Component {
 		this.setState({text})
 	}
 
+	setDate(date) {
+		this.setState({date})
+	}
+
 	render() {
 		return (
 			<View style={styles.scene}>
@@ -52,6 +60,8 @@ export default class App extends React.Component {
 				<AddReminderItem 
 					addReminder={this.addReminder} 
 					handleInput={this.handleInput}
+					setDate={this.setDate}
+					date={this.state.date}
 					text={this.state.text}
 				/>
 			</View>
