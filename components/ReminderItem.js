@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, Button } from 'react-native'
 import moment from 'moment'
 
 class ReminderItem extends Component {
@@ -9,13 +9,21 @@ class ReminderItem extends Component {
 
 	render() {
 		return(
-			<View style={styles.wrapper}>
-				<Text style={styles.text}>
-					{this.props.reminder.name}
-				</Text>
-				<Text>
-					{moment(this.props.reminder.date).format('DD MMMM YYYY')}
-				</Text>
+			<View style={{flex: 1, flexDirection: 'row'}}>
+				<View style={{flex: 1, flexDirection: 'column'}}>
+					<Text style={styles.text}>
+						{this.props.reminder.name}
+					</Text>
+					<Text>
+						{moment(this.props.reminder.date).format('DD MMMM YYYY')}
+					</Text>
+				</View>
+				<View>
+					<Button 
+						title="Delete" 
+						onPress={() => this.props.removeReminder(this.props.reminder.key)} 
+					/>
+				</View>
 			</View>
 		)
 	}

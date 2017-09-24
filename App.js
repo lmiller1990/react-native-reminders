@@ -15,6 +15,7 @@ export default class App extends React.Component {
 		this.handleInput = this.handleInput.bind(this)
 		this.addReminder = this.addReminder.bind(this)
 		this.loadReminders = this.loadReminders.bind(this)
+		this.removeReminder = this.removeReminder.bind(this)
 	}
 
 	componentDidMount() {
@@ -22,7 +23,7 @@ export default class App extends React.Component {
 	}
 
 	loadReminders() {
-		this.localStorage.load('reminder')
+		this.localStorage.load(this.localStorage.REMINDER_KEY)
 		.then(res => this.setState({ reminders: res }))
 	}
 
@@ -32,6 +33,11 @@ export default class App extends React.Component {
 		this.setState({text: ''})
 	}
 
+	async removeReminder(reminderKey) {
+		await this.localStorage.removeReminder(reminderKey)
+		this.loadReminders()
+	}
+
 	handleInput(text) {
 		this.setState({text})
 	}
@@ -39,12 +45,15 @@ export default class App extends React.Component {
 	render() {
 		return (
 			<View style={styles.scene}>
-				<ViewReminders reminders={this.state.reminders} />
+				<ViewReminders 
+					removeReminder={this.removeReminder}
+					reminders={this.state.reminders} />
+
 				<AddReminderItem 
 					addReminder={this.addReminder} 
 					handleInput={this.handleInput}
 					text={this.state.text}
-			/>
+				/>
 			</View>
 		)
 	}

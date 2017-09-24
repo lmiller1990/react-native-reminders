@@ -8,22 +8,41 @@ class LocalStorage {
 			defaultExpires: null,
 			storageBackend: AsyncStorage
 		})
+
+		this.REMINDER_KEY = 'reminder'
 	}
 
-	load(key) {
+	async load(key) {
 		return this.storage.load({ key })
 	}
 
-	addReminder(reminder) {
-		this.load('reminder')
-		.then(res => {
-			let all = res.concat({ 
-				key: res.length + 1, 
+	async removeReminder(reminderKey) {
+		try {
+			const reminders = await this.load(this.REMINDER_KEY)	
+			const updated = reminders.filter(x => x.key !== reminderKey)	
+			this.save(this.REMINDER_KEY, updated)	
+		} catch (error) {
+			console.log('Error removing reminder', error)
+		}
+	}
+
+	async addReminder(reminder) {
+		try {
+			let reminders = await this.load(this.REMINDER_KEY)
+
+			let _key = reminders.length > 0 
+			? Math.max(...reminders.map(x => x.key)) + 1
+			: 0
+			console.log(_key)
+
+			this.save(this.REMINDER_KEY, reminders.concat({
+				key: _key,
 				name: reminder, 
 				date: new Date() 
-			})
-			this.save('reminder', all)
-		})
+			}))
+		} catch (error) {
+			console.log('Error adding reminder', error)
+		}
 	}
 
 	save(key, val) {
