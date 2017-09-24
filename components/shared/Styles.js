@@ -2,10 +2,14 @@ import { StyleSheet } from 'react-native'
 
 const styles = StyleSheet.create({
 	scene: {
-		flex: 1,
-		paddingTop: 20,
-		padding: 10
-	}
+		paddingTop: 25,
+		padding: 10,
+	},
+	divider: {
+		margin: 5,
+		borderWidth: StyleSheet.hairlineWidth,
+		borderColor: 'silver',
+	},
 })
 
 export default styles

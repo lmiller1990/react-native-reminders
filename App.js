@@ -53,17 +53,23 @@ export default class App extends React.Component {
 	render() {
 		return (
 			<View style={styles.scene}>
-				<ViewReminders 
-					removeReminder={this.removeReminder}
-					reminders={this.state.reminders} />
+				<View>
+					<AddReminderItem 
+						addReminder={this.addReminder} 
+						handleInput={this.handleInput}
+						setDate={this.setDate}
+						date={this.state.date}
+						text={this.state.text}
+					/>
+				<View style={styles.divider}></View>
+				</View>
+				<View>
+					<ViewReminders 
+							removeReminder={this.removeReminder}
+							reminders={this.state.reminders} />
+				</View>
 
-				<AddReminderItem 
-					addReminder={this.addReminder} 
-					handleInput={this.handleInput}
-					setDate={this.setDate}
-					date={this.state.date}
-					text={this.state.text}
-				/>
+
 			</View>
 		)
 	}

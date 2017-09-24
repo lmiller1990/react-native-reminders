@@ -3,16 +3,16 @@ import { View, Button, TextInput, StyleSheet } from 'react-native'
 import DatePicker from 'react-native-datepicker'
 
 const styles = StyleSheet.create({
-	wrapper: {
-		flex: 1,
-		flexDirection: 'column',
-		justifyContent: 'flex-end'
-	},
 	fields: {
-		flex: 0,
 		flexDirection: 'row',
 		justifyContent: 'space-around',
 		alignItems: 'center'
+	},
+	textInput: {
+		height: 30, 
+		width: 135,
+		borderColor: 'silver', 
+		borderBottomWidth: StyleSheet.hairlineWidth
 	}
 })
 
@@ -25,9 +25,10 @@ class AddReminderItem extends Component {
 		return(
 			<View style={styles.wrapper}>
 				<View style={styles.fields}>
+
 					<TextInput 
-						style={{height: 30}}
-						placeholder="Enter Reminder"
+						style={styles.textInput}
+						placeholder="Enter event"
 						value={this.props.text}
 						onChangeText={(text) => this.props.handleInput(text)}
 					/>
