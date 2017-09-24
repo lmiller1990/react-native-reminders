@@ -1,5 +1,7 @@
 A simple app I made to learn react native. It's basically a todo app.
 
+You can try it using the Expo client here: https://expo.io/@xenetics/reminders. Push notifications will not work though.
+
 ______________
 
 
