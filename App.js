@@ -23,9 +23,9 @@ export default class App extends React.Component {
 		this.loadReminders()
 	}
 
-	loadReminders() {
-		this.localStorage.load(this.localStorage.REMINDER_KEY)
-		.then(res => this.setState({ reminders: res }))
+	async loadReminders() {
+		const reminders = await this.localStorage.load(this.localStorage.REMINDER_KEY)
+		this.setState({ reminders })
 	}
 
 	async addReminder() {

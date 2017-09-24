@@ -13,7 +13,14 @@ class LocalStorage {
 	}
 
 	async load(key) {
-		return this.storage.load({ key })
+		try {
+			const reminders = await this.storage.load({ key })
+			return reminders
+		} catch (error) {
+			console.log('Error loading reminders', error)
+			const empty = []
+			return empty
+		}
 	}
 
 	async removeReminder(reminderKey) {

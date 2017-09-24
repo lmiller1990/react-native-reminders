@@ -15,7 +15,9 @@ class ReminderItem extends Component {
 						{this.props.reminder.name}
 					</Text>
 					<Text>
-						{moment(this.props.reminder.date).format('DD MMMM YYYY')}
+						{moment(this.props.reminder.date).format('DD MMM YYYY')}
+						{ ' - ' }	
+						{moment(this.props.reminder.date).fromNow()}
 					</Text>
 				</View>
 				<View>
