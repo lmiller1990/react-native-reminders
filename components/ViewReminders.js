@@ -1,22 +1,24 @@
 import React, {Component} from 'react'
 import { FlatList, Text, StyleSheet } from 'react-native'
-
+import LocalStorage from '../utils/localStorage' 
 import ReminderItem from './ReminderItem'
 
 class ViewReminders extends Component {
-	constructor(props) {
-		super(props)
-		console.log('props',props)
+	constructor() {
+		super()
+		this.localStorage = new LocalStorage()
 
-		this.state = {
-			reminders: [
-				{ key: 100, name: 'Watch a movie', date: new Date(2017, 1, 3) },
-				{ key: 101, name: 'Go to the park', date: new Date(2017, 5, 6) },
-			]
-		}
+		this.state = { reminders: [] }
+	}
+
+	componentDidMount() {
+		console.log('Mount')
+		this.localStorage.load('reminder')
+		.then(res => this.setState({ reminders: res }))
 	}
 
 	render() {
+		console.log('Rendering')
 		return (
 			<FlatList
 				data={this.state.reminders} 

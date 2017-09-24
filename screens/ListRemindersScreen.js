@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {View, Button} from 'react-native'
-
+import AddReminderItem from '../components/AddReminderItem'
+import localStorage from '../utils/localStorage'
 import ViewReminders from '../components/ViewReminders'
 
 class ListRemindersScreen extends Component {
@@ -8,7 +9,8 @@ class ListRemindersScreen extends Component {
 		return {
 			title: 'Reminders',
 			headerRight: (
-				<Button title={'+'} onPress={() => navigation.navigate('AddReminder')} />
+				<Button title={'+'} onPress={() => 
+					navigation.navigate('AddReminder') }/>
 			)
 		}
 	}

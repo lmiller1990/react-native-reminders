@@ -6,5 +6,7 @@ import AddReminderScreen from './screens/AddReminderScreen'
 
 export default StackNavigator({
 	Home: { screen: ListRemindersScreen },
-	AddReminder: { screen: AddReminderScreen }
+	AddReminder: { 
+		screen: AddReminderScreen
+	}
 })
